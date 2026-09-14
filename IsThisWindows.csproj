@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+
+    <UseWPF>true</UseWPF>
+    <EnableDefaultApplicationDefinition>true</EnableDefaultApplicationDefinition>
+
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+
+    <AssemblyName>IsThisWindows</AssemblyName>
+    <RootNamespace>IsThisWindows</RootNamespace>
+
+    <!-- ★ ここから追記 ★ -->
+    <!-- 単一ファイル化 -->
+    <PublishSingleFile>true</PublishSingleFile>
+    <!-- .NET環境が入っていないPCでも動くようにランタイムを内蔵 -->
+    <SelfContained>true</SelfContained>
+    <!-- Windows 64bit向けに指定 -->
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <!-- アイコンのファイル名を指定（.csprojと同じフォルダに置く） -->
+    <ApplicationIcon>app.ico</ApplicationIcon>
+    <!-- Native DLL等もexe内部にまとめる設定（WPFで依存関係トラブルを防ぐ用） -->
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+    <!-- ★ ここまで ★ -->
+  </PropertyGroup>
+
+</Project>

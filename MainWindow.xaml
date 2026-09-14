@@ -1,0 +1,445 @@
+<Window x:Class="IsThisWindows.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Is This Windows?"
+        Width="760"
+        Height="540"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        ShowInTaskbar="True">
+
+    <Window.Resources>
+
+        <!-- ========================================= -->
+        <!-- Fonts                                     -->
+        <!-- ========================================= -->
+
+        <FontFamily x:Key="Inter">
+            ./Fonts/#Inter
+        </FontFamily>
+
+
+        <!-- ========================================= -->
+        <!-- Close Button                              -->
+        <!-- ========================================= -->
+
+        <Style x:Key="CloseButton"
+               TargetType="Button">
+
+            <Setter Property="Width" Value="44"/>
+            <Setter Property="Height" Value="44"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Foreground" Value="#777777"/>
+            <Setter Property="Cursor" Value="Hand"/>
+
+            <Setter Property="Template">
+
+                <Setter.Value>
+
+                    <ControlTemplate TargetType="Button">
+
+                        <Border x:Name="CloseBackground"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="12">
+
+                            <TextBlock
+                                Text="×"
+                                FontFamily="{StaticResource Inter}"
+                                FontSize="25"
+                                FontWeight="Regular"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Margin="0,-2,0,0"/>
+
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+
+                            <Trigger Property="IsMouseOver"
+                                     Value="True">
+
+                                <Setter TargetName="CloseBackground"
+                                        Property="Background"
+                                        Value="#EDEDEE"/>
+
+                                <Setter Property="Foreground"
+                                        Value="#111111"/>
+
+                            </Trigger>
+
+                            <Trigger Property="IsPressed"
+                                     Value="True">
+
+                                <Setter TargetName="CloseBackground"
+                                        Property="Background"
+                                        Value="#E1E1E2"/>
+
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+
+                    </ControlTemplate>
+
+                </Setter.Value>
+
+            </Setter>
+
+        </Style>
+
+
+        <!-- ========================================= -->
+        <!-- Window Fade                               -->
+        <!-- ========================================= -->
+
+        <Storyboard x:Key="WindowFade">
+
+            <DoubleAnimation
+                Storyboard.TargetName="MainContent"
+                Storyboard.TargetProperty="Opacity"
+                From="0"
+                To="1"
+                Duration="0:0:1.2"/>
+
+        </Storyboard>
+
+
+        <!-- ========================================= -->
+        <!-- Logo Animation                            -->
+        <!-- ========================================= -->
+
+        <Storyboard x:Key="LogoAnimation">
+
+            <DoubleAnimation
+                Storyboard.TargetName="Logo1"
+                Storyboard.TargetProperty="Opacity"
+                From="0"
+                To="1"
+                Duration="0:0:0.8"
+                BeginTime="0:0:0.3"/>
+
+            <DoubleAnimation
+                Storyboard.TargetName="Logo2"
+                Storyboard.TargetProperty="Opacity"
+                From="0"
+                To="1"
+                Duration="0:0:0.8"
+                BeginTime="0:0:0.75"/>
+
+            <DoubleAnimation
+                Storyboard.TargetName="Logo3"
+                Storyboard.TargetProperty="Opacity"
+                From="0"
+                To="1"
+                Duration="0:0:0.8"
+                BeginTime="0:0:1.2"/>
+
+            <DoubleAnimation
+                Storyboard.TargetName="Logo4"
+                Storyboard.TargetProperty="Opacity"
+                From="0"
+                To="1"
+                Duration="0:0:0.8"
+                BeginTime="0:0:1.65"/>
+
+        </Storyboard>
+
+
+        <!-- ========================================= -->
+        <!-- Check Circle                             -->
+        <!-- ========================================= -->
+
+        <Storyboard x:Key="CheckCircleAnimation">
+
+            <DoubleAnimation
+                Storyboard.TargetName="CheckCircle"
+                Storyboard.TargetProperty="Opacity"
+                From="0"
+                To="1"
+                Duration="0:0:0.6"/>
+
+            <DoubleAnimation
+                Storyboard.TargetName="CheckCircleScale"
+                Storyboard.TargetProperty="ScaleX"
+                From="0.75"
+                To="1"
+                Duration="0:0:0.6"/>
+
+            <DoubleAnimation
+                Storyboard.TargetName="CheckCircleScale"
+                Storyboard.TargetProperty="ScaleY"
+                From="0.75"
+                To="1"
+                Duration="0:0:0.6"/>
+
+        </Storyboard>
+
+
+        <!-- ========================================= -->
+        <!-- Check Mark                               -->
+        <!-- ========================================= -->
+
+        <Storyboard x:Key="CheckMarkAnimation">
+
+            <DoubleAnimation
+                Storyboard.TargetName="CheckMark"
+                Storyboard.TargetProperty="Opacity"
+                From="0"
+                To="1"
+                Duration="0:0:0.15"/>
+
+            <DoubleAnimation
+                Storyboard.TargetName="CheckMark"
+                Storyboard.TargetProperty="StrokeDashOffset"
+                From="45"
+                To="0"
+                Duration="0:0:0.9"/>
+
+        </Storyboard>
+
+
+        <!-- ========================================= -->
+        <!-- Text Appearance                          -->
+        <!-- ========================================= -->
+
+        <Storyboard x:Key="TextAnimation">
+
+            <DoubleAnimation
+                Storyboard.TargetName="SuccessText"
+                Storyboard.TargetProperty="Opacity"
+                From="0"
+                To="1"
+                Duration="0:0:0.9"/>
+
+            <DoubleAnimation
+                Storyboard.TargetName="ResultText"
+                Storyboard.TargetProperty="Opacity"
+                From="0"
+                To="1"
+                Duration="0:0:1.0"
+                BeginTime="0:0:0.5"/>
+
+            <DoubleAnimation
+                Storyboard.TargetName="VersionText"
+                Storyboard.TargetProperty="Opacity"
+                From="0"
+                To="1"
+                Duration="0:0:1.0"
+                BeginTime="0:0:1.1"/>
+
+        </Storyboard>
+
+    </Window.Resources>
+
+
+    <!-- ============================================= -->
+    <!-- Window                                      -->
+    <!-- ============================================= -->
+
+    <Border
+        CornerRadius="24"
+        Background="#F8F8F9">
+
+        <Grid>
+
+
+            <!-- ===================================== -->
+            <!-- Close                                 -->
+            <!-- ===================================== -->
+
+            <Button
+                Style="{StaticResource CloseButton}"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Margin="12"
+                Click="CloseButton_Click"/>
+
+
+            <!-- ===================================== -->
+            <!-- Main                                  -->
+            <!-- ===================================== -->
+
+            <Grid
+                x:Name="MainContent"
+                Opacity="0">
+
+                <StackPanel
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+
+
+                    <!-- ================================= -->
+                    <!-- Windows Logo                       -->
+                    <!-- ================================= -->
+
+                    <Grid
+                        Width="118"
+                        Height="118"
+                        Margin="0,0,0,34">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+
+                        <Rectangle
+                            x:Name="Logo1"
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Fill="#0088FF"
+                            Margin="0,0,5,5"
+                            Opacity="0"/>
+
+                        <Rectangle
+                            x:Name="Logo2"
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Fill="#0088FF"
+                            Margin="5,0,0,5"
+                            Opacity="0"/>
+
+                        <Rectangle
+                            x:Name="Logo3"
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Fill="#0088FF"
+                            Margin="0,5,5,0"
+                            Opacity="0"/>
+
+                        <Rectangle
+                            x:Name="Logo4"
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Fill="#0088FF"
+                            Margin="5,5,0,0"
+                            Opacity="0"/>
+
+                    </Grid>
+
+
+                    <!-- ================================= -->
+                    <!-- Successfully                       -->
+                    <!-- ================================= -->
+
+                    <StackPanel
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        Margin="0,0,0,12">
+
+
+                        <Grid
+                            Width="30"
+                            Height="30"
+                            Margin="0,0,10,0">
+
+                            <Ellipse
+                                x:Name="CheckCircle"
+                                Width="30"
+                                Height="30"
+                                Fill="#0088FF"
+                                Opacity="0">
+
+                                <Ellipse.RenderTransform>
+
+                                    <ScaleTransform
+                                        x:Name="CheckCircleScale"
+                                        ScaleX="0.75"
+                                        ScaleY="0.75"
+                                        CenterX="15"
+                                        CenterY="15"/>
+
+                                </Ellipse.RenderTransform>
+
+                            </Ellipse>
+
+
+                            <Path
+                                x:Name="CheckMark"
+                                Data="M 7,15 L 13,21 L 24,9"
+                                Stroke="White"
+                                StrokeThickness="2.5"
+                                StrokeStartLineCap="Round"
+                                StrokeEndLineCap="Round"
+                                StrokeLineJoin="Round"
+                                Fill="Transparent"
+                                Opacity="0"
+                                StrokeDashArray="45,45"
+                                StrokeDashOffset="45"/>
+
+                        </Grid>
+
+
+                        <TextBlock
+                            x:Name="SuccessText"
+                            Text="Successfully"
+                            FontFamily="{StaticResource Inter}"
+                            FontSize="21"
+                            FontWeight="SemiBold"
+                            Foreground="#111111"
+                            VerticalAlignment="Center"
+                            Opacity="0"/>
+
+                    </StackPanel>
+
+
+                    <!-- ================================= -->
+                    <!-- Result                             -->
+                    <!-- ================================= -->
+
+                    <TextBlock
+                        x:Name="ResultText"
+                        Text="This OS is Windows."
+                        FontFamily="{StaticResource Inter}"
+                        FontSize="32"
+                        FontWeight="SemiBold"
+                        Foreground="#111111"
+                        HorizontalAlignment="Center"
+                        Opacity="0"/>
+
+
+                    <!-- ================================= -->
+                    <!-- Version                            -->
+                    <!-- ================================= -->
+
+                    <TextBlock
+                        x:Name="VersionText"
+                        Text=""
+                        FontFamily="{StaticResource Inter}"
+                        FontSize="15"
+                        Foreground="#777777"
+                        HorizontalAlignment="Center"
+                        TextAlignment="Center"
+                        Margin="0,16,0,0"
+                        Opacity="0"/>
+
+
+                    <!-- ================================= -->
+                    <!-- Footer                             -->
+                    <!-- ================================= -->
+
+                    <TextBlock
+                        Text="Is This Windows?  •  v1.0.0"
+                        FontFamily="{StaticResource Inter}"
+                        FontSize="11"
+                        Foreground="#AAAAAA"
+                        HorizontalAlignment="Center"
+                        Margin="0,30,0,0"/>
+
+                </StackPanel>
+
+            </Grid>
+
+        </Grid>
+
+    </Border>
+
+</Window>
