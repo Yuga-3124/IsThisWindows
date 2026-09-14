@@ -43,17 +43,11 @@ If you're not:
 
 ---
 
-## 🎬 PV
+## 🎬 Official PV
 
-A short promotional video is available as part of the project presentation.
+[![Is This Windows? — Official PV](https://img.youtube.com/vi/muno96u_R6U/maxresdefault.jpg)](https://www.youtube.com/watch?v=muno96u_R6U)
 
-> What OS are you using right now?
->
-> macOS? Linux?
->
-> No, that's not right.
->
-> We're using Windows.
+▶ **[Watch the official PV on YouTube](https://www.youtube.com/watch?v=muno96u_R6U)**
 
 ---
 
