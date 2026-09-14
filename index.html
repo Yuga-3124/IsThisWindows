@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Is This Windows? — A highly advanced Windows detection utility.">
+
+    <meta name="theme-color" content="#ffffff">
+
+    <meta property="og:title" content="Is This Windows?">
+    <meta property="og:description"
+          content="A highly advanced Windows detection utility.">
+    <meta property="og:type" content="website">
+
+    <title>Is This Windows?</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: #ffffff;
+            color: #111111;
+
+            font-family:
+                "Segoe UI",
+                system-ui,
+                -apple-system,
+                BlinkMacSystemFont,
+                sans-serif;
+
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        .container {
+            width: min(1100px, calc(100% - 40px));
+            margin: 0 auto;
+        }
+
+        /* =========================
+           Header
+        ========================= */
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(14px);
+
+            border-bottom: 1px solid #eeeeee;
+        }
+
+        .nav {
+            height: 72px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            font-size: 17px;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        nav {
+            display: flex;
+            gap: 28px;
+        }
+
+        nav a {
+            color: #666666;
+            font-size: 14px;
+
+            transition: color 0.2s ease;
+        }
+
+        nav a:hover {
+            color: #111111;
+        }
+
+        /* =========================
+           Hero
+        ========================= */
+
+        .hero {
+            min-height: 760px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            padding: 100px 0;
+        }
+
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .eyebrow {
+            margin-bottom: 24px;
+
+            color: #777777;
+
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+
+            text-transform: uppercase;
+        }
+
+        h1 {
+            margin: 0;
+
+            font-size: clamp(58px, 10vw, 112px);
+            line-height: 0.95;
+
+            letter-spacing: -0.065em;
+            font-weight: 700;
+        }
+
+        .hero-description {
+            margin: 38px auto 0;
+            max-width: 620px;
+
+            color: #666666;
+            font-size: 19px;
+        }
+
+        .hero-description strong {
+            color: #111111;
+            font-weight: 600;
+        }
+
+        /* =========================
+           Buttons
+        ========================= */
+
+        .buttons {
+            margin-top: 40px;
+
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+
+            flex-wrap: wrap;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            min-width: 130px;
+
+            padding: 12px 20px;
+
+            border-radius: 8px;
+
+            font-size: 14px;
+            font-weight: 600;
+
+            transition:
+                transform 0.2s ease,
+                background 0.2s ease,
+                border-color 0.2s ease;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+        }
+
+        .button-primary {
+            background: #111111;
+            color: #ffffff;
+        }
+
+        .button-primary:hover {
+            background: #222222;
+        }
+
+        .button-secondary {
+            border: 1px solid #dddddd;
+            color: #222222;
+        }
+
+        .button-secondary:hover {
+            background: #f7f7f7;
+            border-color: #cccccc;
+        }
+
+        /* =========================
+           Showcase
+        ========================= */
+
+        .showcase {
+            padding: 40px 0 140px;
+        }
+
+        .screenshot {
+            overflow: hidden;
+
+            border: 1px solid #e5e5e5;
+            border-radius: 18px;
+
+            background: #ffffff;
+
+            box-shadow:
+                0 30px 80px rgba(0, 0, 0, 0.08);
+        }
+
+        .screenshot img {
+            display: block;
+
+            width: 100%;
+            height: auto;
+        }
+
+        /* =========================
+           General Sections
+        ========================= */
+
+        section {
+            padding: 120px 0;
+
+            border-top: 1px solid #eeeeee;
+        }
+
+        .section-label {
+            margin-bottom: 18px;
+
+            color: #888888;
+
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+
+            text-transform: uppercase;
+        }
+
+        h2 {
+            margin: 0;
+            max-width: 800px;
+
+            font-size: clamp(38px, 6vw, 64px);
+            line-height: 1.05;
+
+            letter-spacing: -0.045em;
+        }
+
+        .section-text {
+            margin-top: 28px;
+            max-width: 680px;
+
+            color: #666666;
+            font-size: 17px;
+        }
+
+        /* =========================
+           PV
+        ========================= */
+
+        .video-wrapper {
+            margin-top: 55px;
+
+            overflow: hidden;
+
+            position: relative;
+
+            width: 100%;
+            aspect-ratio: 16 / 9;
+
+            border-radius: 18px;
+            background: #000000;
+
+            box-shadow:
+                0 30px 80px rgba(0, 0, 0, 0.10);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+
+            width: 100%;
+            height: 100%;
+
+            top: 0;
+            left: 0;
+
+            border: 0;
+        }
+
+        /* =========================
+           Features
+        ========================= */
+
+        .features {
+            margin-top: 60px;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, minmax(0, 1fr));
+
+            gap: 18px;
+        }
+
+        .feature {
+            padding: 30px;
+
+            border: 1px solid #e7e7e7;
+            border-radius: 14px;
+        }
+
+        .feature-number {
+            color: #999999;
+
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .feature h3 {
+            margin: 22px 0 10px;
+
+            font-size: 19px;
+            letter-spacing: -0.02em;
+        }
+
+        .feature p {
+            margin: 0;
+
+            color: #777777;
+            font-size: 14px;
+        }
+
+        /* =========================
+           Philosophy
+        ========================= */
+
+        .quote {
+            margin-top: 55px;
+
+            padding: 50px;
+
+            border-radius: 18px;
+
+            background: #f6f6f6;
+
+            font-size: clamp(25px, 4vw, 42px);
+            font-weight: 600;
+
+            line-height: 1.2;
+            letter-spacing: -0.035em;
+        }
+
+        /* =========================
+           Screenshots
+        ========================= */
+
+        .screenshots-grid {
+            margin-top: 55px;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: 18px;
+        }
+
+        .screenshot-card {
+            overflow: hidden;
+
+            border: 1px solid #e5e5e5;
+            border-radius: 14px;
+
+            background: #ffffff;
+        }
+
+        .screenshot-card img {
+            display: block;
+
+            width: 100%;
+            height: auto;
+        }
+
+        .screenshot-caption {
+            padding: 18px 20px;
+
+            border-top: 1px solid #eeeeee;
+
+            color: #666666;
+            font-size: 13px;
+        }
+
+        /* =========================
+           Technical
+        ========================= */
+
+        .tech-grid {
+            margin-top: 55px;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: 18px;
+        }
+
+        .tech-item {
+            padding: 24px;
+
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .tech-key {
+            color: #888888;
+            font-size: 13px;
+        }
+
+        .tech-value {
+            margin-top: 5px;
+
+            font-size: 17px;
+            font-weight: 600;
+        }
+
+        /* =========================
+           Download
+        ========================= */
+
+        .download-box {
+            margin-top: 55px;
+
+            padding: 40px;
+
+            border: 1px solid #e5e5e5;
+            border-radius: 18px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 30px;
+        }
+
+        .download-info h3 {
+            margin: 0;
+
+            font-size: 24px;
+            letter-spacing: -0.03em;
+        }
+
+        .download-info p {
+            margin: 8px 0 0;
+
+            color: #777777;
+            font-size: 14px;
+        }
+
+        .download-meta {
+            margin-top: 16px;
+
+            color: #999999;
+            font-size: 12px;
+        }
+
+        .hash {
+            margin-top: 6px;
+
+            max-width: 650px;
+
+            color: #777777;
+
+            font-family:
+                Consolas,
+                "Courier New",
+                monospace;
+
+            font-size: 11px;
+
+            word-break: break-all;
+        }
+
+        /* =========================
+           Final CTA
+        ========================= */
+
+        .cta {
+            text-align: center;
+        }
+
+        .cta h2 {
+            margin: 0 auto;
+        }
+
+        .cta .buttons {
+            margin-top: 35px;
+        }
+
+        /* =========================
+           Footer
+        ========================= */
+
+        footer {
+            padding: 50px 0;
+
+            border-top: 1px solid #eeeeee;
+
+            color: #888888;
+
+            font-size: 13px;
+        }
+
+        .footer-content {
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 30px;
+        }
+
+        .footer-right {
+            text-align: right;
+        }
+
+        /* =========================
+           Mobile
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            .container {
+                width: min(100% - 28px, 1100px);
+            }
+
+            nav {
+                display: none;
+            }
+
+            .hero {
+                min-height: 650px;
+                padding: 80px 0;
+            }
+
+            .hero-description {
+                font-size: 16px;
+            }
+
+            section {
+                padding: 80px 0;
+            }
+
+            .features,
+            .screenshots-grid,
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .quote {
+                padding: 30px;
+            }
+
+            .download-box {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .footer-content {
+                flex-direction: column;
+            }
+
+            .footer-right {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+<!-- =========================
+     Header
+========================= -->
+
+<header>
+    <div class="container nav">
+
+        <a href="#" class="brand">
+            Is This Windows?
+        </a>
+
+        <nav>
+            <a href="#pv">PV</a>
+            <a href="#features">Features</a>
+            <a href="#technical">Technical</a>
+        </nav>
+
+    </div>
+</header>
+
+
+<main>
+
+    <!-- =========================
+         Hero
+    ========================= -->
+
+    <section class="hero">
+
+        <div class="container hero-content">
+
+            <div class="eyebrow">
+                The world's most advanced Windows detector
+            </div>
+
+            <h1>
+                Is This<br>
+                Windows?
+            </h1>
+
+            <p class="hero-description">
+                A highly advanced Windows detection utility.
+                <br>
+                It checks whether you're running
+                <strong>Windows.</strong>
+                <br>
+                That's it.
+            </p>
+
+            <div class="buttons">
+
+                <!-- DIRECT DOWNLOAD -->
+
+                <a
+                    class="button button-primary"
+                    href="https://github.com/Yuga-3124/IsThisWindows/releases/latest/download/IsThisWindows.exe">
+                    Download
+                </a>
+
+
+                <!-- YOUTUBE -->
+
+                <a
+                    class="button button-secondary"
+                    href="https://www.youtube.com/watch?v=muno96u_R6U"
+                    target="_blank">
+                    Watch PV
+                </a>
+
+
+                <!-- GITHUB -->
+
+                <a
+                    class="button button-secondary"
+                    href="https://github.com/Yuga-3124/IsThisWindows"
+                    target="_blank">
+                    GitHub
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         Main Screenshot
+    ========================= -->
+
+    <section class="showcase">
+
+        <div class="container">
+
+            <div class="screenshot">
+
+                <img
+                    src="screenshots/main.png"
+                    alt="Is This Windows? application">
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         Official PV
+    ========================= -->
+
+    <section id="pv">
+
+        <div class="container">
+
+            <div class="section-label">
+                Official PV
+            </div>
+
+            <h2>
+                What OS are you using right now?
+            </h2>
+
+            <p class="section-text">
+                Watch the official promotional video for
+                Is This Windows?
+            </p>
+
+            <div class="video-wrapper">
+
+                <iframe
+                    src="https://www.youtube.com/embed/muno96u_R6U"
+                    title="Is This Windows? — Official PV"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen>
+                </iframe>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         Features
+    ========================= -->
+
+    <section id="features">
+
+        <div class="container">
+
+            <div class="section-label">
+                Features
+            </div>
+
+            <h2>
+                Extremely advanced.<br>
+                Surprisingly simple.
+            </h2>
+
+            <p class="section-text">
+                Is This Windows? is designed around one
+                incredibly important question:
+                <strong>Is this Windows?</strong>
+            </p>
+
+
+            <div class="features">
+
+                <div class="feature">
+
+                    <div class="feature-number">
+                        01
+                    </div>
+
+                    <h3>
+                        Windows Detection
+                    </h3>
+
+                    <p>
+                        Determines whether the application
+                        is running on Windows.
+                    </p>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-number">
+                        02
+                    </div>
+
+                    <h3>
+                        OS Information
+                    </h3>
+
+                    <p>
+                        Displays the detected Windows edition
+                        and version.
+                    </p>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-number">
+                        03
+                    </div>
+
+                    <h3>
+                        Beautiful UI
+                    </h3>
+
+                    <p>
+                        A carefully designed interface for
+                        an unnecessarily simple task.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         Philosophy
+    ========================= -->
+
+    <section>
+
+        <div class="container">
+
+            <div class="section-label">
+                Philosophy
+            </div>
+
+            <h2>
+                Why does this exist?
+            </h2>
+
+            <p class="section-text">
+                Because someone had to answer the question.
+            </p>
+
+            <div class="quote">
+                "What OS are you using right now?"
+                <br><br>
+                Windows.
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         Screenshots
+    ========================= -->
+
+    <section>
+
+        <div class="container">
+
+            <div class="section-label">
+                Screenshots
+            </div>
+
+            <h2>
+                See the answer.
+            </h2>
+
+
+            <div class="screenshots-grid">
+
+                <div class="screenshot-card">
+
+                    <img
+                        src="screenshots/main.png"
+                        alt="Main screen">
+
+                    <div class="screenshot-caption">
+                        The application interface.
+                    </div>
+
+                </div>
+
+
+                <div class="screenshot-card">
+
+                    <img
+                        src="screenshots/result.png"
+                        alt="Detection result">
+
+                    <div class="screenshot-caption">
+                        The final answer.
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         Technical
+    ========================= -->
+
+    <section id="technical">
+
+        <div class="container">
+
+            <div class="section-label">
+                Technical
+            </div>
+
+            <h2>
+                Built with Windows.
+            </h2>
+
+            <p class="section-text">
+                A small WPF application built with modern
+                .NET technologies.
+            </p>
+
+
+            <div class="tech-grid">
+
+                <div class="tech-item">
+
+                    <div class="tech-key">
+                        Framework
+                    </div>
+
+                    <div class="tech-value">
+                        .NET 8
+                    </div>
+
+                </div>
+
+
+                <div class="tech-item">
+
+                    <div class="tech-key">
+                        UI Framework
+                    </div>
+
+                    <div class="tech-value">
+                        WPF
+                    </div>
+
+                </div>
+
+
+                <div class="tech-item">
+
+                    <div class="tech-key">
+                        Language
+                    </div>
+
+                    <div class="tech-value">
+                        C#
+                    </div>
+
+                </div>
+
+
+                <div class="tech-item">
+
+                    <div class="tech-key">
+                        Version
+                    </div>
+
+                    <div class="tech-value">
+                        v1.0.0
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         Download
+    ========================= -->
+
+    <section>
+
+        <div class="container">
+
+            <div class="section-label">
+                Download
+            </div>
+
+            <h2>
+                Ready to find out?
+            </h2>
+
+
+            <div class="download-box">
+
+                <div class="download-info">
+
+                    <h3>
+                        Is This Windows? v1.0.0
+                    </h3>
+
+                    <p>
+                        Self-contained Windows executable.
+                        No separate .NET installation required.
+                    </p>
+
+                    <div class="download-meta">
+                        Windows x64 · 154 MB · SHA-256
+                    </div>
+
+                    <div class="hash">
+                        206df4c79e3d0e28dcbbb52a8a6d07f6cf4a0a3d1819873001f8f6801cc94d6a
+                    </div>
+
+                </div>
+
+
+                <!-- DIRECT DOWNLOAD -->
+
+                <a
+                    class="button button-primary"
+                    href="https://github.com/Yuga-3124/IsThisWindows/releases/latest/download/IsThisWindows.exe">
+                    Download v1.0.0
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         Final CTA
+    ========================= -->
+
+    <section class="cta">
+
+        <div class="container">
+
+            <h2>
+                So...<br>
+                Is This Windows?
+            </h2>
+
+            <div class="buttons">
+
+                <!-- DIRECT DOWNLOAD -->
+
+                <a
+                    class="button button-primary"
+                    href="https://github.com/Yuga-3124/IsThisWindows/releases/latest/download/IsThisWindows.exe">
+                    Download
+                </a>
+
+
+                <!-- GITHUB -->
+
+                <a
+                    class="button button-secondary"
+                    href="https://github.com/Yuga-3124/IsThisWindows"
+                    target="_blank">
+                    View on GitHub
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- =========================
+     Footer
+========================= -->
+
+<footer>
+
+    <div class="container footer-content">
+
+        <div>
+
+            <strong>
+                Is This Windows?
+            </strong>
+
+            <br>
+
+            An unofficial project by an independent developer.
+
+            <br><br>
+
+            © 2026 Is This Windows?
+
+        </div>
+
+
+        <div class="footer-right">
+
+            Windows is a trademark of Microsoft Corporation.
+
+            <br>
+
+            This project is not affiliated with,
+            sponsored by, or endorsed by Microsoft.
+
+        </div>
+
+    </div>
+
+</footer>
+
+</body>
+</html>
