@@ -1,4 +1,4 @@
-````markdown
+
 # Is This Windows?
 
 > A highly advanced Windows detection utility.
@@ -257,7 +257,7 @@ This means spending more effort on things that normally wouldn't need much effor
 * presentation
 
 The application could have displayed:
-
+```text
 Windows detected.
 ```
 
