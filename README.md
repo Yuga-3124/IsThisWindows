@@ -324,9 +324,9 @@ Third-party trademarks remain the property of their respective owners.
 ## 🌐 Links
 
 * **GitHub:** This repository
-* **GitHub Pages:** Coming soon
-* **PV:** Coming soon
-* **Development Article:** Coming soon
+* **GitHub Pages:** https://yuga-3124.github.io/IsThisWindows/
+* **PV:** https://youtu.be/muno96u_R6U?si=oikFDWqW8eHN2xrV
+* **Development Article** https://x.gd/uStHb 
 
 ---
 
